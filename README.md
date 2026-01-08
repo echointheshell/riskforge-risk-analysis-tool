@@ -1,5 +1,5 @@
 # ⚒️ RiskForge  
-_An AI-augmented, local risk register assistant for SOC & compliance teams_
+_An AI-augmented, local risk register assistant for Security & Compliance teams_
 
 ## 🎯 Problem  
 Manual managment of risk registers are often tedious, error prone, inconsistent, and overlooks shadow IT assets, creating gaps in compliance audits.
