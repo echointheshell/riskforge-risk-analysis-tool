@@ -22,7 +22,7 @@ RiskForge enforces audit ready discipline with:
 - [ ] Asset validation against local CMDB (Configuration Management Database)
 - [ ] Inherent/Residual risk scoring  
 - [ ] Approval workflow
-- [ ] Triage Queue vs. Registered Risks
+- [ ] Registered Risks and Risk Intake sections
 
 ## 📜 Compliance Alignment  
 - ISO 27001 (Section 6.1: Risk Assessment)  
