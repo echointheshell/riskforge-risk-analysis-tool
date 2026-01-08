@@ -1,4 +1,4 @@
-# RiskForge  
+# ⚒️ RiskForge  
 _An AI-augmented, local risk register assistant for SOC & compliance teams_
 
 ## 🎯 Problem  
@@ -11,7 +11,7 @@ RiskForge enforces audit ready discipline with:
 - **Human-in-the-loop approval** (Uses the four-eyes principle to have peer reviewed acceptance and confirmation of risks)  
 - **Local LLM augmentation** (Smart analysis and enrichment of risk fields)  
 
-## 🛠️ Basic Workflow  
+## 🔁 Basic Workflow  
 1. Analyst submits risk which enters **Triage Queue**  
 2. Local AI model enriches risk (suggests controls, impact score)  
 3. GRC team discusses risk: Click **Approve Risk**
