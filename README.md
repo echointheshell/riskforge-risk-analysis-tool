@@ -1,33 +1,128 @@
-# ⚒️ RiskForge  
-_A local, AI augmented risk register assistant that forges raw threats into audit-ready, actionable insights._
+# ⚒️ RiskForge
+> A local, AI-augmented risk register assistant that forges raw threats into audit-ready, actionable insights.
 
-## 🎯 Problem  
-Manual managment of risk registers are often tedious, error prone, inconsistent, and overlooks shadow IT assets, creating gaps in compliance audits.
+![Status](https://img.shields.io/badge/status-in%20development-yellow)
+![Python](https://img.shields.io/badge/python-3.11+-blue)
+![Compliance](https://img.shields.io/badge/compliance-ISO%2027001%20%7C%20NIST%20CSF-green)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
-## 💡 Solution  
-RiskForge enforces audit ready discipline with:  
-- **CMDB backed validation** (Only accepts assets in the CMDB as a compliance guardrail)  
-- **Shadow IT triage** (Allows risks to be added for unknown assets not in the CMDB, to be logged and triaged)  
-- **Human-in-the-loop approval** (Uses the four-eyes principle to have peer reviewed acceptance and confirmation of risks)  
-- **Local LLM augmentation** (Smart analysis and enrichment of risk fields)  
+---
 
-## 🔁 Basic Workflow  
-1. Analyst submits risk which enters **Triage Queue**  
-2. Local AI model enriches risk (suggests controls, impact score)  
-3. GRC team discusses risk: Click **Approve Risk**
-4. Risk moves to **Audit Ready Register** tagged with who approved it and when
-5. Export for compliance reports  
+## 🎯 Problem
 
-## 📂 Features (MVP)  
-- [ ] Asset validation against local CMDB (Configuration Management Database)
-- [ ] Inherent/Residual risk scoring  
-- [ ] Approval workflow
-- [ ] Registered Risks and Risk Intake sections
+Risk registers are a core requirement of frameworks like ISO 27001 and NIST CSF — yet in practice they are often maintained as static spreadsheets: manually updated, inconsistently formatted, and prone to gaps. Shadow IT assets go untracked, controls are left unassigned, and audit trails are incomplete.
 
-## 📜 Compliance Alignment  
-- ISO 27001 (Section 6.1: Risk Assessment)  
-- NIST CSF (Identify + Protect)  
+**RiskForge solves this** by enforcing structure, validation, and accountability at the point of risk intake.
 
-## 🔮 Future Enhancements and Ideas
-- Asset relationship graph (ports, IPs, roles, dependencies)
-- AI traversal of asset relationships for blast radius analysis
+---
+
+## 💡 Solution
+
+RiskForge is a locally-run GRC tool built for security analysts who need audit-ready risk registers without enterprise tooling overhead.
+
+| Feature | Description |
+|---|---|
+| 🗄️ **CMDB-backed validation** | Only accepts risks against known assets — unknown assets are flagged as Shadow IT |
+| 👻 **Shadow IT triage** | Unrecognised assets enter a separate triage queue for investigation |
+| 👥 **Human-in-the-loop approval** | Four-eyes principle enforced — risks require peer review before registration |
+| 🤖 **Local LLM augmentation** | On-device AI suggests controls, scores impact, and enriches risk fields |
+| 📊 **Inherent / Residual scoring** | Likelihood × Impact matrix aligned to ISO 27001 risk methodology |
+| 📤 **Compliance export** | Audit-ready exports tagged with approver identity and timestamp |
+
+---
+
+## 🔁 Workflow
+
+```
+Analyst submits risk
+        │
+        ▼
+┌───────────────┐     Unknown asset?     ┌──────────────────┐
+│  CMDB Check   │ ──────────────────────▶│ Shadow IT Queue  │
+└───────────────┘                        └──────────────────┘
+        │ Known asset
+        ▼
+┌───────────────┐
+│ Triage Queue  │  ◀──── Local AI enriches risk (controls, score)
+└───────────────┘
+        │ GRC peer review
+        ▼
+┌───────────────┐
+│   Approval    │  ◀──── Four-eyes sign-off
+└───────────────┘
+        │
+        ▼
+┌──────────────────────┐
+│  Audit-Ready Register│  Tagged: approver + timestamp
+└──────────────────────┘
+        │
+        ▼
+   📄 Export Report
+```
+
+---
+
+## 📂 MVP Features
+
+- [x] Data models: Risk, Asset, CMDB (Pydantic + SQLModel)
+- [ ] Asset validation against local CMDB
+- [ ] Shadow IT triage queue
+- [ ] Inherent / Residual risk scoring engine
+- [ ] Human-in-the-loop approval workflow
+- [ ] Streamlit UI (intake form, triage queue, audit register)
+- [ ] Local LLM integration via Ollama
+- [ ] Compliance export (CSV / PDF)
+
+---
+
+## 🏗️ Project Structure
+
+```
+riskforge/
+├── app.py                  # Entry point
+├── requirements.txt
+├── data/
+│   └── riskforge.db        # SQLite database
+├── riskforge/
+│   ├── models/             # Pydantic data models
+│   │   ├── risk.py
+│   │   └── asset.py
+│   ├── db/                 # SQLModel table definitions + DB logic
+│   ├── core/               # Business rules (scoring, validation, workflow)
+│   ├── ai/                 # Local LLM integration (Ollama)
+│   └── ui/                 # Streamlit interface
+└── exports/                # Generated compliance reports
+```
+
+---
+
+## 📜 Compliance Alignment
+
+| Framework | Control |
+|---|---|
+| ISO 27001 | Section 6.1 — Information Security Risk Assessment |
+| NIST CSF | Identify (ID.RA) — Risk Assessment |
+| NIST CSF | Protect (PR.IP) — Information Protection Processes |
+
+---
+
+## 🔮 Future Enhancements
+
+- **Asset relationship graph** — model ports, IPs, roles, and dependencies between assets
+- **Blast radius analysis** — AI traversal of asset relationships to assess cascading risk
+- **CMDB sync** — import asset inventory from external sources (CSV, API)
+- **Risk trend dashboard** — track residual risk reduction over time
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Language | Python 3.11+ |
+| Data validation | Pydantic v2 |
+| Database ORM | SQLModel + SQLite |
+| UI | Streamlit |
+| Local AI | Ollama |
+| Export | CSV / ReportLab (PDF) |
+
