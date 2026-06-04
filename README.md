@@ -27,3 +27,7 @@ RiskForge enforces audit ready discipline with:
 ## 📜 Compliance Alignment  
 - ISO 27001 (Section 6.1: Risk Assessment)  
 - NIST CSF (Identify + Protect)  
+
+## 🔮 Future Enhancements and Ideas
+- Asset relationship graph (ports, IPs, roles, dependencies)
+- AI traversal of asset relationships for blast radius analysis
