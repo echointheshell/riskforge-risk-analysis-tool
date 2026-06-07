@@ -26,7 +26,8 @@ RiskForge is a locally-run GRC tool built for security analysts who need audit-r
 | **Shadow IT triage** | Unrecognised assets enter a separate triage queue for investigation |
 | **Human-in-the-loop approval** | Four-eyes principle enforced - risks require peer review before registration |
 | **Local LLM augmentation** | On-device AI suggests controls, scores impact, and enriches risk fields |
-| **Inherent / Residual scoring** | Likelihood × Impact matrix aligned to ISO 27001 risk methodology |
+| **Inherent / Residual scoring** | Likelihood x Impact matrix aligned to ISO 27001 risk methodology |
+| **Tamper-evident audit log** | Every state transition recorded with actor, timestamp, and SHA-256 risk snapshot |
 | **Compliance export** | Audit-ready exports tagged with approver identity and timestamp |
 
 ---
@@ -64,11 +65,13 @@ Analyst submits risk
 
 ## 📂 MVP Features
 
-- [x] Data models: Risk, Asset, CMDB (Pydantic + SQLModel)
+- [x] Data models: Risk, Asset (Pydantic + SQLModel)
+- [x] Database layer: SQLite engine, session factory, table creation
+- [x] Inherent / Residual risk scoring engine (Likelihood x Impact matrix)
+- [x] Audit event log: tamper-evident, per-transition snapshots with SHA-256 hash
+- [ ] Approval workflow (four-eyes principle, state machine)
 - [ ] Asset validation against local CMDB
 - [ ] Shadow IT triage queue
-- [ ] Inherent / Residual risk scoring engine
-- [ ] Human-in-the-loop approval workflow
 - [ ] Streamlit UI (intake form, triage queue, audit register)
 - [ ] Local LLM integration via Ollama
 - [ ] Compliance export (CSV / PDF)
@@ -85,10 +88,14 @@ riskforge/
 │   └── riskforge.db        # SQLite database
 ├── riskforge/
 │   ├── models/             # Pydantic data models
-│   │   ├── risk.py
-│   │   └── asset.py
+│   │   ├── risk.py         # Risk, RiskEvent, Enums
+│   │   └── asset.py        # Asset, Enums
 │   ├── db/                 # SQLModel table definitions + DB logic
-│   ├── core/               # Business rules (scoring, validation, workflow)
+│   │   ├── models.py       # RiskTable, AssetTable, RiskEventTable
+│   │   └── database.py     # Engine, session factory, table creation
+│   ├── core/               # Business rules
+│   │   ├── scoring.py      # Inherent / Residual risk scoring
+│   │   └── workflow.py     # State machine, four-eyes enforcement
 │   ├── ai/                 # Local LLM integration (Ollama)
 │   └── ui/                 # Streamlit interface
 └── exports/                # Generated compliance reports
