@@ -119,6 +119,7 @@ riskforge/
 - **Blast radius analysis** - AI traversal of asset relationships to assess cascading risk
 - **CMDB sync** - import asset inventory from external sources (CSV, API)
 - **Risk trend dashboard** - track residual risk reduction over time
+- **Risk heatmap** - visually see where risks are concentrated across assets in conjunction with blast radius
 
 ---
 
