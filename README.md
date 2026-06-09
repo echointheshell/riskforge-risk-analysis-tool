@@ -34,32 +34,7 @@ RiskForge is a locally-run GRC tool built for security analysts who need audit-r
 
 ## 🔁 Workflow
 
-```
-Analyst submits risk
-        │
-        ▼
-┌───────────────┐     Unknown asset?     ┌──────────────────┐
-│  CMDB Check   │ ────────────────────▶ │  Shadow IT Queue │
-└───────────────┘                        └──────────────────┘
-        │ Known asset
-        ▼
-┌───────────────┐
-│ Triage Queue  │  ◀──── Local AI enriches risk (controls, score)
-└───────────────┘
-        │ GRC peer review
-        ▼
-┌───────────────┐
-│   Approval    │  ◀──── Four-eyes sign-off
-└───────────────┘
-        │
-        ▼
-┌──────────────────────┐
-│ Audit-Ready Register │  Tagged: approver + timestamp
-└──────────────────────┘
-        │
-        ▼
-  Export Report
-```
+![Riskforge Worklow](assets/riskforge_workflow.svg)
 
 ---
 
